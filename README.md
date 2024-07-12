@@ -1,20 +1,25 @@
-RadGraph
-=========
-Requirements:
+# RadGraph
+
+Install all required dependencies using
+```sh
+$ pip install -r requirements.txt
 ```
-'torch>=1.8.1'
-'transformers>=4.23.1'
-"appdirs"
-'jsonpickle'
-'filelock'
-'h5py'
-'spacy'
-'nltk'
+
+## Build & Install Package Locally
+
+```sh
+$ pip install .
 ```
-Testing:
-```python
-pytest
+
+## Run Tests
+
+First build & install the package locally; then run `pytest` to execute the tests.
+```sh
+$ pip install .
+$ pytest
 ```
+
+## Examples
 
 Official package as per:
 ```bibtex
