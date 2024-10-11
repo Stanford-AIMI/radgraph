@@ -1,9 +1,0 @@
-torch==2.2.1
-transformers==4.39.0
-appdirs
-jsonpickle
-filelock
-h5py
-spacy
-nltk
-pytest>=8.0.0,<9.0.0
