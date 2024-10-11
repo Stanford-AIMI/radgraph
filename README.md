@@ -22,18 +22,31 @@ $ pytest
 ## Examples
 
 Official package as per:
+
 ```bibtex
-@inproceedings{NEURIPS DATASETS AND BENCHMARKS2021_c8ffe9a5,
- author = {Jain, Saahil and Agrawal, Ashwin and Saporta, Adriel and Truong, Steven and Duong, Du Nguyen Duong Nguyen and Bui, Tan and Chambon, Pierre and Zhang, Yuhao and Lungren, Matthew and Ng, Andrew and Langlotz, Curtis and Rajpurkar, Pranav and Rajpurkar, Pranav},
- booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks},
- editor = {J. Vanschoren and S. Yeung},
- pages = {},
- publisher = {Curran},
- title = {RadGraph: Extracting Clinical Entities and Relations from Radiology Reports},
- url = {https://datasets-benchmarks-proceedings.neurips.cc/paper_files/paper/2021/file/c8ffe9a587b126f152ed3d89a146b445-Paper-round1.pdf},
- volume = {1},
- year = {2021}
-}
+@inproceedings{delbrouck-etal-2024-radgraph,
+    title = "{R}ad{G}raph-{XL}: A Large-Scale Expert-Annotated Dataset for Entity and Relation Extraction from Radiology Reports",
+    author = "Delbrouck, Jean-Benoit  and
+      Chambon, Pierre  and
+      Chen, Zhihong  and
+      Varma, Maya  and
+      Johnston, Andrew  and
+      Blankemeier, Louis  and
+      Van Veen, Dave  and
+      Bui, Tan  and
+      Truong, Steven  and
+      Langlotz, Curtis",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand and virtual meeting",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.765",
+    pages = "12902--12915",
+    }
 ```
 
 Usage:
@@ -79,3 +92,19 @@ mean_reward, reward_list, hypothesis_annotation_lists, reference_annotation_list
 
 ```
 
+
+For info, radgraph v1 is:
+
+```bibtex
+@inproceedings{NEURIPS DATASETS AND BENCHMARKS2021_c8ffe9a5,
+ author = {Jain, Saahil and Agrawal, Ashwin and Saporta, Adriel and Truong, Steven and Duong, Du Nguyen Duong Nguyen and Bui, Tan and Chambon, Pierre and Zhang, Yuhao and Lungren, Matthew and Ng, Andrew and Langlotz, Curtis and Rajpurkar, Pranav and Rajpurkar, Pranav},
+ booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks},
+ editor = {J. Vanschoren and S. Yeung},
+ pages = {},
+ publisher = {Curran},
+ title = {RadGraph: Extracting Clinical Entities and Relations from Radiology Reports},
+ url = {https://datasets-benchmarks-proceedings.neurips.cc/paper_files/paper/2021/file/c8ffe9a587b126f152ed3d89a146b445-Paper-round1.pdf},
+ volume = {1},
+ year = {2021}
+}
+```

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='radgraph',
-    version='0.1.2',
+    version='0.1.9',
     author='Jean-Benoit Delbrouck',
     license='MIT',
     long_description=open("README.md").read(),
@@ -13,8 +13,9 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3 :: Only',
     ],
-    install_requires=['torch>=1.8.1',
-                      'transformers>=4.23.1',
+    python_requires='>=3.8,<3.9',
+    install_requires=['torch==2.2.1',
+                      'transformers==4.39.0',
                       "appdirs",
                       'jsonpickle',
                       'filelock',
@@ -22,6 +23,7 @@ setup(
                       'spacy',
                       'nltk',
                       'dotmap',
+                      'pytest',
                       ],
     packages=find_packages(),
     zip_safe=False)

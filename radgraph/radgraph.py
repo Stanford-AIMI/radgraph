@@ -48,6 +48,7 @@ class RadGraph(nn.Module):
             batch_size=1,
             cuda=None,
             model_type=None,
+            temp_dir=None,
             **kwargs
     ):
 
@@ -59,43 +60,51 @@ class RadGraph(nn.Module):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         device = "cpu"
 
+        self.cuda = cuda
+        self.batch_size = batch_size
+
         if model_type is None:
             print("model_type not provided, defaulting to radgraph-xl")
             model_type = "radgraph-xl"
 
+        self.model_type = model_type.lower()
+
         assert model_type in ["radgraph", "radgraph-xl", "echograph"]
 
-        self.cuda = cuda
-        self.batch_size = batch_size
-        self.model_type = model_type.lower()
-        if model_type == "echograph":
-            self.model_path = "./echograph.tar.gz"
-        else:
-            self.model_path = os.path.join(CACHE_DIR, MODEL_MAPPING[model_type])
-        temp_dir = os.path.join(CACHE_DIR, model_type)
+        if temp_dir is None:
+            temp_dir = CACHE_DIR
 
+        # Gettting model archive path
+        if model_type == "echograph":
+            self.model_archive = "./echograph.tar.gz"
+        else:
+            self.model_archive = os.path.join(temp_dir, MODEL_MAPPING[model_type])
+
+        # If model archive doesnt exist, download it
         try:
-            if not os.path.exists(self.model_path):
+            if not os.path.exists(self.model_archive):
                 download_model(
                     repo_id="StanfordAIMI/RRG_scorers",
-                    cache_dir=CACHE_DIR,
+                    cache_dir=temp_dir,
                     filename=MODEL_MAPPING[model_type],
                 )
         except Exception as e:
             print("Model download error", e)
 
-        # Archive
-        if not os.path.exists(temp_dir):
-            with tarfile.open(self.model_path, "r:gz") as tar:
-                tar.extractall(path=temp_dir)
+        model_dir = os.path.join(temp_dir, model_type)
+
+        # Extract archive model_dir doesnt exist
+        if not os.path.exists(model_dir):
+            with tarfile.open(self.model_archive, "r:gz") as tar:
+                tar.extractall(path=model_dir)
 
         # Read config.
-        config_path = os.path.join(temp_dir, "config.json")
+        config_path = os.path.join(model_dir, "config.json")
         config = json.load(open(config_path))
         config = DotMap(config)
 
         # Vocab
-        vocab_dir = os.path.join(temp_dir, "vocabulary")
+        vocab_dir = os.path.join(model_dir, "vocabulary")
         vocab_params = config.get("vocabulary", Params({}))
         vocab = Vocabulary.from_files(
             vocab_dir, vocab_params.get("padding_token"), vocab_params.get("oov_token")
@@ -127,7 +136,7 @@ class RadGraph(nn.Module):
                             **model_dict
                             )
 
-        model_state_path = os.path.join(temp_dir, "weights.th")
+        model_state_path = os.path.join(model_dir, "weights.th")
         if device == "cpu":
             model_state = torch.load(model_state_path, map_location=torch.device('cpu'))
         else:

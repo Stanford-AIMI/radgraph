@@ -82,6 +82,7 @@ def echograph_preprocess_report(text):
             tokenized_words.append(word)
     return tokenized_words
 
+
 def preprocess_reports(report_list, model_type):
     """Load up the files mentioned in the temporary json file, and
     processes them in format that the dygie model can take as input.

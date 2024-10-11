@@ -2,7 +2,7 @@ from radgraph import RadGraph, F1RadGraph
 
 
 def test_radgraph():
-    radgraph = RadGraph()
+    radgraph = RadGraph(model_type="radgraph")
     annotations = radgraph(["no evidence of acute cardiopulmonary process moderate hiatal hernia"])
     assert annotations == {'0': {'text': 'no evidence of acute cardiopulmonary process moderate hiatal hernia',
                                  'entities': {'1': {'tokens': 'acute', 'label': 'OBS-DA', 'start_ix': 3, 'end_ix': 3,
@@ -36,7 +36,7 @@ def test_f1radgraph():
             "no evidence of acute cardiopulmonary process moderate hiatal hernia",
             "no acute cardiopulmonary process"]
 
-    f1radgraph = F1RadGraph(reward_level="all")
+    f1radgraph = F1RadGraph(reward_level="all", model_type="radgraph")
     mean_reward, reward_list, hypothesis_annotation_lists, reference_annotation_lists = f1radgraph(hyps=hyps, refs=refs)
     assert mean_reward == (0.6238095238095238, 0.5111111111111111, 0.5011204481792717)
     assert reward_list == ([1.0, 0.4, 0.5714285714285715, 0.8, 0.5714285714285715, 0.4],
