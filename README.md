@@ -1,8 +1,12 @@
 # RadGraph
 
-Install all required dependencies using
+RadGraph is built for Python 3.8.
+
+You can install it in a virtual environment using
 ```sh
-$ pip install -r requirements.txt
+brew install python@3.8
+/opt/homebrew/opt/python@3.8/libexec/bin/python3 -m venv radgraph
+source radgraph/bin/activate
 ```
 
 ## Build & Install Package Locally
