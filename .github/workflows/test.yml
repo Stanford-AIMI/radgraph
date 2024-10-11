@@ -9,7 +9,8 @@ on:
       - master
 
 jobs:
-  build:
+  buildandtest:
+    name: Build and Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
