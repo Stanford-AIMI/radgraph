@@ -1,23 +1,29 @@
-RadGraph
-=========
-Requirements:
+# RadGraph
 
-python==3.8
+RadGraph is built for Python 3.8.
+
+You can install it in a virtual environment using
+```sh
+brew install python@3.8
+/opt/homebrew/opt/python@3.8/libexec/bin/python3 -m venv radgraph
+source radgraph/bin/activate
 ```
-'torch==2.2.1'
-'transformers==4.39.0'
-"appdirs"
-'jsonpickle'
-'filelock'
-'h5py'
-'spacy'
-'nltk'
-'pytest'
+
+## Build & Install Package Locally
+
+```sh
+$ pip install .
 ```
-Testing:
-```python
-pytest
+
+## Run Tests
+
+First build & install the package locally; then run `pytest` to execute the tests.
+```sh
+$ pip install .
+$ pytest
 ```
+
+## Examples
 
 Official package as per:
 
