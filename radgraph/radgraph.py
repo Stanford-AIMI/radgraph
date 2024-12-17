@@ -131,7 +131,7 @@ class RadGraph(nn.Module):
 
         model_state_path = os.path.join(model_dir, "weights.th")
         if device == "cpu":
-            model_state = torch.load(model_state_path, map_location=torch.device('cpu'))
+            model_state = torch.load(model_state_path, map_location=torch.device('cpu'), weights_only=True)
         else:
             model_state = torch.load(model_state_path)
 

@@ -77,7 +77,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         from radgraph.allennlp.common import cached_transformers
 
         self.tokenizer = cached_transformers.get_tokenizer(
-            model_name, add_special_tokens=False, **tokenizer_kwargs
+            model_name, **tokenizer_kwargs
         )
 
         self._add_special_tokens = add_special_tokens
@@ -119,7 +119,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         from radgraph.allennlp.common import cached_transformers
 
         tokenizer_with_special_tokens = cached_transformers.get_tokenizer(
-            model_name, add_special_tokens=True, **tokenizer_kwargs
+            model_name, **tokenizer_kwargs
         )
         dummy_output = tokenizer_with_special_tokens.encode_plus(
             token_a,
