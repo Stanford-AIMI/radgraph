@@ -1,4 +1,3 @@
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.training.metrics.average import Average
@@ -17,7 +16,6 @@ class Perplexity(Average):
     average perplexity of the batches.
     """
 
-    @overrides
     def get_metric(self, reset: bool = False):
         """
         # Returns

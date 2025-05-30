@@ -1,5 +1,4 @@
 import torch
-from overrides_ import overrides
 from radgraph.allennlp.modules.attention.attention import Attention
 
 
@@ -11,6 +10,5 @@ class DotProductAttention(Attention):
     Registered as an `Attention` with name "dot_product".
     """
 
-    @overrides
     def _forward_internal(self, vector: torch.Tensor, matrix: torch.Tensor) -> torch.Tensor:
         return matrix.bmm(vector.unsqueeze(-1)).squeeze(-1)

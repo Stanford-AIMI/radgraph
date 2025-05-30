@@ -4,7 +4,6 @@ tokenization.
 """
 
 from radgraph.allennlp.data.tokenizers.tokenizer import Token, Tokenizer
-from radgraph.allennlp.data.tokenizers.spacy_tokenizer import SpacyTokenizer
 from radgraph.allennlp.data.tokenizers.letters_digits_tokenizer import LettersDigitsTokenizer
 from radgraph.allennlp.data.tokenizers.pretrained_transformer_tokenizer import PretrainedTransformerTokenizer
 from radgraph.allennlp.data.tokenizers.character_tokenizer import CharacterTokenizer

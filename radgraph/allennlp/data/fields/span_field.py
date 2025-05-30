@@ -1,6 +1,5 @@
 from typing import Dict
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.data.fields.field import Field
@@ -48,18 +47,15 @@ class SpanField(Field[torch.Tensor]):
                 f"{span_end} and {self.sequence_field.sequence_length() - 1} respectively."
             )
 
-    @overrides
     def get_padding_lengths(self) -> Dict[str, int]:
 
         return {}
 
-    @overrides
     def as_tensor(self, padding_lengths: Dict[str, int]) -> torch.Tensor:
 
         tensor = torch.LongTensor([self.span_start, self.span_end])
         return tensor
 
-    @overrides
     def empty_field(self):
         return SpanField(-1, -1, self.sequence_field.empty_field())
 

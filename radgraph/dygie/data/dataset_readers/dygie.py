@@ -4,7 +4,6 @@ import json
 import pickle as pkl
 import warnings
 
-from overrides_ import overrides
 
 from radgraph.allennlp.common.file_utils import cached_path
 from radgraph.allennlp.data.dataset_readers.dataset_reader import DatasetReader
@@ -40,7 +39,6 @@ class DyGIEReader(DatasetReader):
         self._max_span_width = max_span_width
         self._token_indexers = token_indexers or {"tokens": SingleIdTokenIndexer()}
 
-    @overrides
     def _read(self, file_path: str):
         # Modified by JB: file path is a list of json dict, not a file anymore. Removed Open
         file_path = eval(file_path)
@@ -177,7 +175,6 @@ class DyGIEReader(DatasetReader):
 
         return fields
 
-    @overrides
     def text_to_instance(self, doc_text: Dict[str, Any]):
         """
         Convert a Document object into an instance.
@@ -196,13 +193,11 @@ class DyGIEReader(DatasetReader):
 
         return Instance(fields)
 
-    @overrides
     def _instances_from_cache_file(self, cache_filename):
         with open(cache_filename, "rb") as f:
             for entry in pkl.load(f):
                 yield entry
 
-    @overrides
     def _instances_to_cache_file(self, cache_filename, instances):
         with open(cache_filename, "wb") as f:
             pkl.dump(instances, f, protocol=pkl.HIGHEST_PROTOCOL)

@@ -2,7 +2,6 @@ from typing import List, Optional, Union
 
 import torch
 import torch.distributed as dist
-from overrides_ import overrides
 
 from radgraph.allennlp.common.util import is_distributed
 from radgraph.allennlp.common.checks import ConfigurationError
@@ -91,7 +90,6 @@ class FBetaMeasure(Metric):
         # Shape: (num_classes, )
         self._true_sum: Union[None, torch.Tensor] = None
 
-    @overrides
     def __call__(
         self,
         predictions: torch.Tensor,
@@ -176,7 +174,6 @@ class FBetaMeasure(Metric):
         self._pred_sum += pred_sum
         self._true_sum += true_sum
 
-    @overrides
     def get_metric(self, reset: bool = False):
         """
         # Returns
@@ -237,7 +234,6 @@ class FBetaMeasure(Metric):
         else:
             return {"precision": precision.item(), "recall": recall.item(), "fscore": fscore.item()}
 
-    @overrides
     def reset(self) -> None:
         self._true_positive_sum = None
         self._pred_sum = None

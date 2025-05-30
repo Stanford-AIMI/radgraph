@@ -1,7 +1,6 @@
 import logging
 
 from typing import Dict, List
-from overrides_ import overrides
 
 from radgraph.allennlp.common.file_utils import cached_path
 from radgraph.allennlp.data.dataset_readers.dataset_reader import DatasetReader
@@ -44,7 +43,6 @@ class BabiReader(DatasetReader):
         self._keep_sentences = keep_sentences
         self._token_indexers = token_indexers or {"tokens": SingleIdTokenIndexer()}
 
-    @overrides
     def _read(self, file_path: str):
         # if `file_path` is a URL, redirect to the cache
         file_path = cached_path(file_path)
@@ -72,7 +70,6 @@ class BabiReader(DatasetReader):
                 else:
                     context.append(new_entry)
 
-    @overrides
     def text_to_instance(
         self,  # type: ignore
         context: List[List[str]],

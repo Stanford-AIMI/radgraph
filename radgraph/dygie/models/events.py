@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Optional, Callable
 
 import torch
 from torch.nn import functional as F
-from overrides_ import overrides
 
 from radgraph.allennlp.data import Vocabulary
 from radgraph.allennlp.models.model import Model
@@ -112,7 +111,6 @@ class EventExtractor(Model):
 
     ####################
 
-    @overrides
     def forward(self,  # type: ignore
                 trigger_mask,
                 trigger_embeddings,
@@ -445,7 +443,6 @@ class EventExtractor(Model):
         loss = self._argument_loss(scores_flat, labels_flat)
         return loss
 
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         res = {}
         for namespace, metrics in self._metrics.items():

@@ -1,7 +1,6 @@
 import logging
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 
 # import torch.distributed as dist
@@ -139,7 +138,6 @@ class Covariance(Metric):
             self.reset()
         return covariance
 
-    @overrides
     def reset(self):
         self._total_prediction_mean = 0.0
         self._total_label_mean = 0.0

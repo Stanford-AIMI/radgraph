@@ -1,4 +1,3 @@
-from overrides_ import overrides
 from typing import Optional
 
 import torch
@@ -19,7 +18,6 @@ class NERMetrics(Metric):
         self.none_label = none_label
         self.reset()
 
-    @overrides
     def __call__(self,
                  predictions: torch.Tensor,
                  gold_labels: torch.Tensor,
@@ -35,7 +33,6 @@ class NERMetrics(Metric):
             self._true_negatives += ((predictions!=i)*(gold_labels!=i)*mask.bool()).sum().item()
             self._false_negatives += ((predictions!=i)*(gold_labels==i)*mask.bool()).sum().item()
 
-    @overrides
     def get_metric(self, reset=False):
         """
         Returns
@@ -56,7 +53,6 @@ class NERMetrics(Metric):
 
         return precision, recall, f1_measure
 
-    @overrides
     def reset(self):
         self._true_positives = 0
         self._false_positives = 0

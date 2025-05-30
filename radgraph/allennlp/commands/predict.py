@@ -9,8 +9,6 @@ import argparse
 import sys
 import json
 
-from overrides_ import overrides
-
 from radgraph.allennlp.commands.subcommand import Subcommand
 from radgraph.allennlp.common import logging as common_logging
 from radgraph.allennlp.common.checks import check_for_gpu, ConfigurationError
@@ -23,7 +21,6 @@ from radgraph.allennlp.data import Instance
 
 @Subcommand.register("predict")
 class Predict(Subcommand):
-    @overrides
     def add_subparser(self, parser: argparse._SubParsersAction) -> argparse.ArgumentParser:
         description = """Run the specified model against a JSON-lines input file."""
         subparser = parser.add_parser(

@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Union
 
 import numpy
 import torch
-from overrides_ import overrides
 from torch.nn.modules import Dropout
 
 from radgraph.allennlp.common import FromParams
@@ -311,7 +310,6 @@ class _ElmoCharacterEncoder(torch.nn.Module):
     def get_output_dim(self):
         return self.output_dim
 
-    @overrides
     def forward(self, inputs: torch.Tensor) -> Dict[str, torch.Tensor]:
         """
         Compute context insensitive token embeddings for ELMo representations.

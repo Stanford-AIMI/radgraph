@@ -2,7 +2,6 @@ from collections import Counter
 import math
 from typing import Iterable, Tuple, Dict, Set
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -55,7 +54,6 @@ class BLEU(Metric):
         self._prediction_lengths = 0
         self._reference_lengths = 0
 
-    @overrides
     def reset(self) -> None:
         self._precision_matches = Counter()
         self._precision_totals = Counter()
@@ -97,7 +95,6 @@ class BLEU(Metric):
             return 0.0
         return math.exp(1.0 - self._reference_lengths / self._prediction_lengths)
 
-    @overrides
     def __call__(
         self,  # type: ignore
         predictions: torch.LongTensor,
@@ -160,7 +157,6 @@ class BLEU(Metric):
         self._prediction_lengths += _prediction_lengths
         self._reference_lengths += _reference_lengths
 
-    @overrides
     def get_metric(self, reset: bool = False) -> Dict[str, float]:
 
         brevity_penalty = self._get_brevity_penalty()

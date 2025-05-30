@@ -1,8 +1,6 @@
 from typing import Dict, List
 import logging
 
-from overrides_ import overrides
-
 from radgraph.allennlp.common.file_utils import cached_path
 from radgraph.allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from radgraph.allennlp.data.fields import TextField, SequenceLabelField, MetadataField, Field
@@ -54,7 +52,6 @@ class SequenceTaggingDatasetReader(DatasetReader):
         self._word_tag_delimiter = word_tag_delimiter
         self._token_delimiter = token_delimiter
 
-    @overrides
     def _read(self, file_path):
         # if `file_path` is a URL, redirect to the cache
         file_path = cached_path(file_path)

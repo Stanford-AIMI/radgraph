@@ -4,7 +4,6 @@ from typing import Optional
 import math
 import numpy as np
 
-from overrides_ import overrides
 import torch
 
 # import torch.distributed as dist
@@ -91,7 +90,6 @@ class PearsonCorrelation(Metric):
             pearson_r = covariance / denominator
         return pearson_r
 
-    @overrides
     def reset(self):
         self._predictions_labels_covariance.reset()
         self._predictions_variance.reset()

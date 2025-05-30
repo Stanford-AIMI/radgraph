@@ -9,8 +9,6 @@ import json
 import logging
 from typing import Any, Dict
 
-from overrides_ import overrides
-
 from radgraph.allennlp.commands.subcommand import Subcommand
 from radgraph.allennlp.common import logging as common_logging
 from radgraph.allennlp.common.util import dump_metrics, prepare_environment
@@ -24,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 @Subcommand.register("evaluate")
 class Evaluate(Subcommand):
-    @overrides
     def add_subparser(self, parser: argparse._SubParsersAction) -> argparse.ArgumentParser:
         description = """Evaluate the specified model + dataset"""
         subparser = parser.add_parser(

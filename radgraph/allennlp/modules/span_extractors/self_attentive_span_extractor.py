@@ -1,5 +1,4 @@
 import torch
-from overrides_ import overrides
 
 from radgraph.allennlp.modules.span_extractors.span_extractor import SpanExtractor
 from radgraph.allennlp.modules.time_distributed import TimeDistributed
@@ -44,7 +43,6 @@ class SelfAttentiveSpanExtractor(SpanExtractor):
     def get_output_dim(self) -> int:
         return self._input_dim
 
-    @overrides
     def forward(
         self,
         sequence_tensor: torch.FloatTensor,

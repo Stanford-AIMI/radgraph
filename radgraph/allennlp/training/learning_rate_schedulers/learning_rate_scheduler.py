@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Union
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.common.checks import ConfigurationError
@@ -13,7 +12,6 @@ class LearningRateScheduler(Scheduler, Registrable):
     def __init__(self, optimizer: torch.optim.Optimizer, last_epoch: int = -1) -> None:
         super().__init__(optimizer, "lr", last_epoch)
 
-    @overrides
     def get_values(self):
         raise NotImplementedError
 
@@ -25,21 +23,17 @@ class _PyTorchLearningRateSchedulerWrapper(LearningRateScheduler):
     def get_values(self):
         return self.lr_scheduler.get_last_lr()
 
-    @overrides
     def step(self, metric: float = None) -> None:
         self.lr_scheduler.step()
 
-    @overrides
     def state_dict(self) -> Dict[str, Any]:
         return self.lr_scheduler.state_dict()
 
-    @overrides
     def load_state_dict(self, state_dict: Dict[str, Any]) -> None:
         self.lr_scheduler.load_state_dict(state_dict)
 
 
 class _PyTorchLearningRateSchedulerWithMetricsWrapper(_PyTorchLearningRateSchedulerWrapper):
-    @overrides
     def step(self, metric: float = None) -> None:
         if metric is None:
             raise ConfigurationError(

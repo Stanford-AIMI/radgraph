@@ -1,7 +1,5 @@
 from typing import List, Union
 
-from overrides_ import overrides
-
 from radgraph.allennlp.data.tokenizers.token import Token
 from radgraph.allennlp.data.tokenizers.tokenizer import Tokenizer
 
@@ -55,7 +53,6 @@ class CharacterTokenizer(Tokenizer):
         self._start_tokens.reverse()
         self._end_tokens = end_tokens or []
 
-    @overrides
     def tokenize(self, text: str) -> List[Token]:
         if self._lowercase_characters:
             text = text.lower()

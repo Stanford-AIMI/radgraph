@@ -2,8 +2,6 @@ import argparse
 import logging
 from typing import Any, Optional
 
-from overrides_ import overrides
-
 from radgraph.allennlp import __version__
 from radgraph.allennlp.commands.evaluate import Evaluate
 from radgraph.allennlp.commands.find_learning_rate import FindLearningRate
@@ -34,7 +32,6 @@ class ArgumentParserWithDefaults(argparse.ArgumentParser):
             return not bool(default)
         return False
 
-    @overrides
     def add_argument(self, *args, **kwargs):
         # Add default value to the help message when the default is meaningful.
         default = kwargs.get("default")

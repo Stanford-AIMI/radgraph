@@ -29,7 +29,6 @@ The available activation functions are
 from typing import Callable
 
 import torch
-from overrides_ import overrides
 
 from radgraph.allennlp.common import Registrable
 
@@ -66,7 +65,6 @@ class _ActivationLambda(torch.nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self._func(x)
 
-    @overrides
     def _get_name(self):
         return self._name
 

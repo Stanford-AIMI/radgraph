@@ -1,5 +1,4 @@
 import torch
-from overrides_ import overrides
 
 from radgraph.allennlp.common.registrable import Registrable
 
@@ -16,7 +15,6 @@ class SpanExtractor(torch.nn.Module, Registrable):
     spans.
     """
 
-    @overrides
     def forward(
         self,
         sequence_tensor: torch.FloatTensor,

@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union, Callable
 
 import torch
 import torch.nn.functional as F
-from overrides_ import overrides
 
 from radgraph.allennlp.data import Vocabulary
 from radgraph.allennlp.models.model import Model
@@ -384,7 +383,6 @@ class CorefResolver(Model):
 
         return output_dict
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]):
         """
         Converts the list of spans and predicted antecedent indices into clusters
@@ -458,7 +456,6 @@ class CorefResolver(Model):
         output_dict["predicted_clusters"] = batch_clusters
         return output_dict
 
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         mention_recall = self._mention_recall.get_metric(reset)
         coref_precision, coref_recall, coref_f1 = self._conll_coref_scores.get_metric(reset)

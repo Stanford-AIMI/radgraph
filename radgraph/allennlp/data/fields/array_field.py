@@ -2,7 +2,6 @@ from typing import Dict
 
 import numpy
 import torch
-from overrides_ import overrides
 
 from radgraph.allennlp.data.fields.field import Field
 
@@ -23,11 +22,9 @@ class ArrayField(Field[numpy.ndarray]):
         self.padding_value = padding_value
         self.dtype = dtype
 
-    @overrides
     def get_padding_lengths(self) -> Dict[str, int]:
         return {"dimension_" + str(i): shape for i, shape in enumerate(self.array.shape)}
 
-    @overrides
     def as_tensor(self, padding_lengths: Dict[str, int]) -> torch.Tensor:
         max_shape = [padding_lengths["dimension_{}".format(i)] for i in range(len(padding_lengths))]
 
@@ -50,7 +47,6 @@ class ArrayField(Field[numpy.ndarray]):
         tensor = torch.from_numpy(return_array)
         return tensor
 
-    @overrides
     def empty_field(self):
         # Pass the padding_value, so that any outer field, e.g., `ListField[ArrayField]` uses the
         # same padding_value in the padded ArrayFields

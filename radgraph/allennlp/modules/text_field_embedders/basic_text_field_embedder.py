@@ -2,7 +2,6 @@ from typing import Dict
 import inspect
 
 import torch
-from overrides_ import overrides
 
 from radgraph.allennlp.common.checks import ConfigurationError
 from radgraph.allennlp.data import TextFieldTensors
@@ -43,7 +42,6 @@ class BasicTextFieldEmbedder(TextFieldEmbedder):
             self.add_module(name, embedder)
         self._ordered_embedder_keys = sorted(self._token_embedders.keys())
 
-    @overrides
     def get_output_dim(self) -> int:
         output_dim = 0
         for embedder in self._token_embedders.values():

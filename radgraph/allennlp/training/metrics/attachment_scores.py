@@ -1,6 +1,5 @@
 from typing import Optional, List
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -134,7 +133,6 @@ class AttachmentScores(Metric):
         }
         return metrics
 
-    @overrides
     def reset(self):
         self._labeled_correct = 0.0
         self._unlabeled_correct = 0.0

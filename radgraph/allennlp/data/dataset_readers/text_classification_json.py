@@ -1,13 +1,12 @@
 from typing import Dict, List, Union
 import logging
 import json
-from overrides_ import overrides
 from radgraph.allennlp.common.file_utils import cached_path
 from radgraph.allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from radgraph.allennlp.data.fields import LabelField, TextField, Field, ListField
 from radgraph.allennlp.data.instance import Instance
 from radgraph.allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
-from radgraph.allennlp.data.tokenizers import Tokenizer, SpacyTokenizer
+from radgraph.allennlp.data.tokenizers import Tokenizer
 from radgraph.allennlp.data.tokenizers.sentence_splitter import SpacySentenceSplitter
 
 logger = logging.getLogger(__name__)
@@ -64,7 +63,6 @@ class TextClassificationJsonReader(DatasetReader):
         if self._segment_sentences:
             self._sentence_segmenter = SpacySentenceSplitter()
 
-    @overrides
     def _read(self, file_path):
         with open(cached_path(file_path), "r") as data_file:
             for line in data_file.readlines():
@@ -95,7 +93,6 @@ class TextClassificationJsonReader(DatasetReader):
             tokens = tokens[: self._max_sequence_length]
         return tokens
 
-    @overrides
     def text_to_instance(
         self, text: str, label: Union[str, int] = None
     ) -> Instance:  # type: ignore

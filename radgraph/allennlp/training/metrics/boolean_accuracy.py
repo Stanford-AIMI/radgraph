@@ -1,6 +1,5 @@
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -107,7 +106,6 @@ class BooleanAccuracy(Metric):
             self.reset()
         return accuracy
 
-    @overrides
     def reset(self):
         self._correct_count = 0.0
         self._total_count = 0.0

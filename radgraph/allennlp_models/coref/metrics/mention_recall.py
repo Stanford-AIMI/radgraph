@@ -1,5 +1,4 @@
 from typing import Any, Dict, List, Set, Tuple
-from overrides_ import overrides
 
 import torch
 import torch.distributed as dist
@@ -15,7 +14,6 @@ class MentionRecall(Metric):
         self._num_gold_mentions = 0
         self._num_recalled_mentions = 0
 
-    @overrides
     def __call__(
         self,  # type: ignore
         batched_top_spans: torch.Tensor,
@@ -45,7 +43,6 @@ class MentionRecall(Metric):
         self._num_gold_mentions += num_gold_mentions
         self._num_recalled_mentions += num_recalled_mentions
 
-    @overrides
     def get_metric(self, reset: bool = False) -> float:
         if self._num_gold_mentions == 0:
             recall = 0.0
@@ -55,7 +52,6 @@ class MentionRecall(Metric):
             self.reset()
         return recall
 
-    @overrides
     def reset(self):
         self._num_gold_mentions = 0
         self._num_recalled_mentions = 0

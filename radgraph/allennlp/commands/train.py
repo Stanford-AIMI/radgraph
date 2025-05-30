@@ -13,7 +13,6 @@ from typing import Any, Dict, List, Optional, Union
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
-from overrides_ import overrides
 
 from radgraph.allennlp.commands.subcommand import Subcommand
 from radgraph.allennlp.common import Params, Registrable, Lazy
@@ -33,7 +32,6 @@ logger = logging.getLogger(__name__)
 
 @Subcommand.register("train")
 class Train(Subcommand):
-    @overrides
     def add_subparser(self, parser: argparse._SubParsersAction) -> argparse.ArgumentParser:
         description = """Train the specified model on the specified dataset."""
         subparser = parser.add_parser(self.name, description=description, help="Train a model.")

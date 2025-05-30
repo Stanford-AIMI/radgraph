@@ -1,6 +1,5 @@
 import torch
 from torch.nn.parameter import Parameter
-from overrides_ import overrides
 
 from radgraph.allennlp.modules.span_extractors.span_extractor import SpanExtractor
 from radgraph.allennlp.modules.token_embedders.embedding import Embedding
@@ -91,7 +90,6 @@ class EndpointSpanExtractor(SpanExtractor):
             return combined_dim + self._span_width_embedding.get_output_dim()
         return combined_dim
 
-    @overrides
     def forward(
         self,
         sequence_tensor: torch.FloatTensor,

@@ -5,7 +5,6 @@ import tempfile
 import subprocess
 import shutil
 
-from overrides_ import overrides
 from nltk import Tree
 
 import torch
@@ -85,7 +84,6 @@ class EvalbBracketingScorer(Metric):
         self._gold_brackets = 0.0
         self._predicted_brackets = 0.0
 
-    @overrides
     def __call__(self, predicted_trees: List[Tree], gold_trees: List[Tree]) -> None:  # type: ignore
         """
         # Parameters
@@ -169,7 +167,6 @@ class EvalbBracketingScorer(Metric):
         self._gold_brackets += _gold_brackets
         self._predicted_brackets += _predicted_brackets
 
-    @overrides
     def get_metric(self, reset: bool = False):
         """
         # Returns
@@ -199,7 +196,6 @@ class EvalbBracketingScorer(Metric):
             "evalb_f1_measure": f1_measure,
         }
 
-    @overrides
     def reset(self):
         self._correct_predicted_brackets = 0.0
         self._gold_brackets = 0.0

@@ -2,7 +2,6 @@ from typing import Dict, List, Union, Set, Iterator
 import logging
 import textwrap
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.common.checks import ConfigurationError
@@ -104,13 +103,11 @@ class SequenceLabelField(Field[torch.Tensor]):
     def __len__(self) -> int:
         return len(self.labels)
 
-    @overrides
     def count_vocab_items(self, counter: Dict[str, Dict[str, int]]):
         if self._indexed_labels is None:
             for label in self.labels:
                 counter[self._label_namespace][label] += 1  # type: ignore
 
-    @overrides
     def index(self, vocab: Vocabulary):
         if not self._skip_indexing:
             self._indexed_labels = [
@@ -118,18 +115,15 @@ class SequenceLabelField(Field[torch.Tensor]):
                 for label in self.labels
             ]
 
-    @overrides
     def get_padding_lengths(self) -> Dict[str, int]:
         return {"num_tokens": self.sequence_field.sequence_length()}
 
-    @overrides
     def as_tensor(self, padding_lengths: Dict[str, int]) -> torch.Tensor:
         desired_num_tokens = padding_lengths["num_tokens"]
         padded_tags = pad_sequence_to_length(self._indexed_labels, desired_num_tokens)
         tensor = torch.LongTensor(padded_tags)
         return tensor
 
-    @overrides
     def empty_field(self) -> "SequenceLabelField":
         # The empty_list here is needed for mypy
         empty_list: List[str] = []

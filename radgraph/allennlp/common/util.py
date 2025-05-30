@@ -27,11 +27,8 @@ from typing import (
 )
 
 import numpy
-import spacy
 import torch
 import torch.distributed as dist
-from spacy.cli.download import download as spacy_download
-from spacy.language import Language as SpacyModelType
 
 from radgraph.allennlp.common.checks import log_pytorch_version_info
 from radgraph.allennlp.common.params import Params
@@ -86,9 +83,6 @@ def sanitize(x: Any) -> Any:
     elif isinstance(x, numpy.bool_):
         # Numpy bool_ need to be converted to python bool.
         return bool(x)
-    elif isinstance(x, (spacy.tokens.Token, Token)):
-        # Tokens get sanitized to just their text.
-        return x.text
     elif isinstance(x, (list, tuple)):
         # Lists and Tuples need their values sanitized
         return [sanitize(x_i) for x_i in x]
@@ -247,12 +241,12 @@ def prepare_environment(params: Params):
     log_pytorch_version_info()
 
 
-LOADED_SPACY_MODELS: Dict[Tuple[str, bool, bool, bool], SpacyModelType] = {}
+LOADED_SPACY_MODELS = {}
 
 
 def get_spacy_model(
     spacy_model_name: str, pos_tags: bool, parse: bool, ner: bool
-) -> SpacyModelType:
+):
     """
     In order to avoid loading spacy models a whole bunch of times, we'll save references to them,
     keyed by the options we used to create the spacy model, so any particular configuration only

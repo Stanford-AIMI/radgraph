@@ -1,8 +1,6 @@
 import math
 from typing import Optional, Tuple
 
-from overrides_ import overrides
-
 import torch
 import torch.nn.functional as F
 from transformers import XLNetConfig
@@ -90,7 +88,6 @@ class PretrainedTransformerEmbedder(TokenEmbedder):
             for param in self.transformer_model.parameters():
                 param.requires_grad = False
 
-    @overrides
     def get_output_dim(self):
         return self.output_dim
 
@@ -102,7 +99,6 @@ class PretrainedTransformerEmbedder(TokenEmbedder):
         else:
             return 0
 
-    @overrides
     def forward(
         self,
         token_ids: torch.LongTensor,

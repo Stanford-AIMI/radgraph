@@ -40,7 +40,8 @@ MODEL_MAPPING = {
     "echograph": "echograph.tar.gz",
 }
 
-version = importlib.metadata.version('radgraph')
+# version = importlib.metadata.version('radgraph')
+version = "0.17.0"
 CACHE_DIR = user_cache_dir("radgraph")
 CACHE_DIR = os.path.join(CACHE_DIR, version)
 

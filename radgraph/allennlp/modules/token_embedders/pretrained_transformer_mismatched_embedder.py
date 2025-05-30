@@ -1,6 +1,5 @@
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.modules.token_embedders import PretrainedTransformerEmbedder, TokenEmbedder
@@ -53,11 +52,9 @@ class PretrainedTransformerMismatchedEmbedder(TokenEmbedder):
             gradient_checkpointing=gradient_checkpointing,
         )
 
-    @overrides
     def get_output_dim(self):
         return self._matched_embedder.get_output_dim()
 
-    @overrides
     def forward(
         self,
         token_ids: torch.LongTensor,

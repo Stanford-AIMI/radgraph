@@ -1,5 +1,3 @@
-from overrides_ import overrides
-
 import torch
 import torch.distributed as dist
 
@@ -20,7 +18,6 @@ class Average(Metric):
         self._total_value = 0.0
         self._count = 0
 
-    @overrides
     def __call__(self, value):
         """
         # Parameters
@@ -41,7 +38,6 @@ class Average(Metric):
         self._count += _count
         self._total_value += _total_value
 
-    @overrides
     def get_metric(self, reset: bool = False):
         """
         # Returns
@@ -54,7 +50,6 @@ class Average(Metric):
             self.reset()
         return average_value
 
-    @overrides
     def reset(self):
         self._total_value = 0.0
         self._count = 0

@@ -1,7 +1,5 @@
 from typing import List
 
-from overrides_ import overrides
-
 from radgraph.allennlp.data.tokenizers.token import Token
 from radgraph.allennlp.data.tokenizers.tokenizer import Tokenizer
 
@@ -20,6 +18,5 @@ class WhitespaceTokenizer(Tokenizer):
     Registered as a `Tokenizer` with name "whitespace" and "just_spaces".
     """
 
-    @overrides
     def tokenize(self, text: str) -> List[Token]:
         return [Token(t) for t in text.split()]

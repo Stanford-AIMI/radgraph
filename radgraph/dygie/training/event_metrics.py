@@ -1,4 +1,3 @@
-from overrides_ import overrides
 from collections import Counter
 
 from radgraph.allennlp.training.metrics.metric import Metric
@@ -30,7 +29,6 @@ class EventMetrics(Metric):
     def __init__(self):
         self.reset()
 
-    @overrides
     def __call__(self, predicted_events_list, metadata_list):
         for predicted_events, metadata in zip(predicted_events_list, metadata_list):
             # Trigger scoring.
@@ -89,7 +87,6 @@ class EventMetrics(Metric):
             self._matched_argument_ids += id_match
 
 
-    @overrides
     def get_metric(self, reset=False):
         res = {}
 
@@ -111,7 +108,6 @@ class EventMetrics(Metric):
 
         return res
 
-    @overrides
     def reset(self):
         self._gold_triggers = 0
         self._predicted_triggers = 0
@@ -130,7 +126,6 @@ class ArgumentStats(Metric):
     def __init__(self):
         self.reset()
 
-    @overrides
     def __call__(self, predicted_events_list):
         for predicted_events in predicted_events_list:
             predicted_arguments = _invert_arguments(predicted_events["argument_dict"],
@@ -144,7 +139,6 @@ class ArgumentStats(Metric):
             self._total_arguments += len(span_counts)
             self._repeated_arguments += len(repeated)
 
-    @overrides
     def get_metric(self, reset=False):
         # Fraction of event arguments associated with multiple triggers.
         args_multiple = (self._repeated_arguments / self._total_arguments
@@ -157,7 +151,6 @@ class ArgumentStats(Metric):
         res = dict(args_multiple=args_multiple)
         return res
 
-    @overrides
     def reset(self):
         self._total_arguments = 0
         self._repeated_arguments = 0

@@ -1,6 +1,5 @@
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 # from sklearn import metrics
@@ -118,7 +117,6 @@ class Auc(Metric):
 
         return None
 
-    @overrides
     def reset(self):
         self._all_predictions = torch.FloatTensor()
         self._all_gold_labels = torch.LongTensor()

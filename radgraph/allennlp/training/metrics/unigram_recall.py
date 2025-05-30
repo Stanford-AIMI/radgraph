@@ -2,7 +2,6 @@ from typing import Optional
 
 import sys
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -105,7 +104,6 @@ class UnigramRecall(Metric):
             self.reset()
         return {"unigram_recall": recall}
 
-    @overrides
     def reset(self):
         self.correct_count = 0.0
         self.total_count = 0.0

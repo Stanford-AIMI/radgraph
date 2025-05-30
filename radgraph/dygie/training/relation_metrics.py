@@ -1,5 +1,3 @@
-from overrides_ import overrides
-
 from radgraph.allennlp.training.metrics.metric import Metric
 
 from radgraph.dygie.training.f1 import compute_f1
@@ -15,7 +13,6 @@ class RelationMetrics(Metric):
     # TODO(dwadden) This requires decoding because the dataset reader gets rid of gold spans wider
     # than the span width. So, I can't just compare the tensor of gold labels to the tensor of
     # predicted labels.
-    @overrides
     def __call__(self, predicted_relation_list, metadata_list):
         for predicted_relations, metadata in zip(predicted_relation_list, metadata_list):
             gold_relations = metadata.relation_dict
@@ -26,7 +23,6 @@ class RelationMetrics(Metric):
                 if ix in gold_relations and gold_relations[ix] == label:
                     self._total_matched += 1
 
-    @overrides
     def get_metric(self, reset=False):
         precision, recall, f1 = compute_f1(self._total_predicted, self._total_gold, self._total_matched)
 
@@ -36,7 +32,6 @@ class RelationMetrics(Metric):
 
         return precision, recall, f1
 
-    @overrides
     def reset(self):
         self._total_gold = 0
         self._total_predicted = 0

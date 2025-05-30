@@ -7,7 +7,6 @@ import argparse
 import logging
 import pathlib
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.common.util import import_module_and_submodules
@@ -20,7 +19,6 @@ logger = logging.getLogger(__name__)
 
 @Subcommand.register("test-install")
 class TestInstall(Subcommand):
-    @overrides
     def add_subparser(self, parser: argparse._SubParsersAction) -> argparse.ArgumentParser:
         description = """Test that AllenNLP is installed correctly."""
         subparser = parser.add_parser(

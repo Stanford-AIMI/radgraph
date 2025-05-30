@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Tuple
 from collections import Counter
 
-from overrides_ import overrides
 # from scipy.optimize import linear_sum_assignment
 import numpy as np
 import torch
@@ -14,7 +13,6 @@ class ConllCorefScores(Metric):
     def __init__(self) -> None:
         self.scorers = [Scorer(m) for m in (Scorer.muc, Scorer.b_cubed, Scorer.ceafe)]
 
-    @overrides
     def __call__(
         self,  # type: ignore
         top_spans: torch.Tensor,
@@ -58,7 +56,6 @@ class ConllCorefScores(Metric):
                     predicted_clusters, gold_clusters, mention_to_predicted, mention_to_gold
                 )
 
-    @overrides
     def get_metric(self, reset: bool = False) -> Tuple[float, float, float]:
         metrics = (lambda e: e.get_precision(), lambda e: e.get_recall(), lambda e: e.get_f1())
         precision, recall, f1_score = tuple(
@@ -68,7 +65,6 @@ class ConllCorefScores(Metric):
             self.reset()
         return precision, recall, f1_score
 
-    @overrides
     def reset(self):
         self.scorers = [Scorer(metric) for metric in (Scorer.muc, Scorer.b_cubed, Scorer.ceafe)]
 

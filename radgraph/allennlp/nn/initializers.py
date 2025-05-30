@@ -27,7 +27,6 @@ import re
 import math
 from typing import Callable, List, Tuple, Dict
 import itertools
-from overrides_ import overrides
 
 import torch
 import torch.nn.init
@@ -387,7 +386,6 @@ class PretrainedModelInitializer(Initializer):
         self.weights: Dict[str, torch.Tensor] = torch.load(weights_file_path)
         self.parameter_name_overrides = parameter_name_overrides or {}
 
-    @overrides
     def __call__(self, tensor: torch.Tensor, parameter_name: str, **kwargs) -> None:  # type: ignore
         # Select the new parameter name if it's being overridden
         if parameter_name in self.parameter_name_overrides:

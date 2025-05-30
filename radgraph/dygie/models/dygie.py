@@ -4,7 +4,6 @@ import copy
 
 import torch
 import torch.nn.functional as F
-from overrides_ import overrides
 
 from radgraph.allennlp.data import Vocabulary
 from radgraph.allennlp.common.params import Params
@@ -160,7 +159,6 @@ class DyGIE(Model):
         # TODO(dwadden) Get rid of this when I find a better way to do it.
         return x if x is None else x.squeeze(0)
 
-    @overrides
     def forward(self,
                 text,
                 spans,
@@ -286,7 +284,6 @@ class DyGIE(Model):
                                     span_nr] = top_span_embeddings[sample_nr, top_span_nr]
         return new_span_embeddings
 
-    @overrides
     def make_output_human_readable(self, output_dict: Dict[str, torch.Tensor]):
         """
         Converts the list of spans and predicted antecedent indices into clusters

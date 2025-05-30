@@ -1,5 +1,4 @@
 import torch
-from overrides_ import overrides
 from torch.nn.parameter import Parameter
 
 from radgraph.allennlp.common.checks import ConfigurationError
@@ -126,7 +125,6 @@ class BidirectionalEndpointSpanExtractor(SpanExtractor):
             )
         return forward_combined_dim + backward_combined_dim
 
-    @overrides
     def forward(
         self,
         sequence_tensor: torch.FloatTensor,

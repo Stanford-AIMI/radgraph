@@ -4,7 +4,6 @@ This is basically a copy of AllenNLP's Pruner module, but with support for entit
 
 from typing import Tuple, Union
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.nn import util
@@ -52,7 +51,6 @@ class Pruner(torch.nn.Module):
         self._gold_beam = gold_beam
         self._min_score_to_keep = min_score_to_keep
 
-    @overrides
     def forward(self, # pylint: disable=arguments-differ
                 embeddings: torch.FloatTensor,
                 mask: torch.LongTensor,

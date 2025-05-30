@@ -1,7 +1,4 @@
 from typing import List
-from overrides_ import overrides
-
-import spacy
 
 from radgraph.allennlp.common import Registrable
 from radgraph.allennlp.common.util import get_spacy_model
@@ -54,11 +51,9 @@ class SpacySentenceSplitter(SentenceSplitter):
                 sbd = self.spacy.create_pipe(sbd_name)
                 self.spacy.add_pipe(sbd)
 
-    @overrides
     def split_sentences(self, text: str) -> List[str]:
         return [sent.string.strip() for sent in self.spacy(text).sents]
 
-    @overrides
     def batch_split_sentences(self, texts: List[str]) -> List[List[str]]:
         """
         This method lets you take advantage of spacy's batch processing.

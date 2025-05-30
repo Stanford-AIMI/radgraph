@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional, Callable
 
 import torch
 from torch.nn import functional as F
-from overrides_ import overrides
 
 from radgraph.allennlp.data import Vocabulary
 from radgraph.allennlp.models.model import Model
@@ -71,7 +70,6 @@ class NERTagger(Model):
 
         self._loss = torch.nn.CrossEntropyLoss(reduction="sum")
 
-    @overrides
     def forward(self,  # type: ignore
                 spans: torch.IntTensor,
                 span_mask: torch.IntTensor,
@@ -147,7 +145,6 @@ class NERTagger(Model):
         return predictions
 
     # TODO(dwadden) This code is repeated elsewhere. Refactor.
-    @overrides
     def get_metrics(self, reset: bool = False) -> Dict[str, float]:
         "Loop over the metrics for all namespaces, and return as dict."
         res = {}

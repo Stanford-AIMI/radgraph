@@ -1,6 +1,5 @@
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -68,7 +67,6 @@ class MeanAbsoluteError(Metric):
             self.reset()
         return {"mae": mean_absolute_error}
 
-    @overrides
     def reset(self):
         self._absolute_error = 0.0
         self._total_count = 0.0

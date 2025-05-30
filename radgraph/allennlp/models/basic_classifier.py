@@ -1,6 +1,5 @@
 from typing import Dict, Optional
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.data import TextFieldTensors, Vocabulary
@@ -144,7 +143,6 @@ class BasicClassifier(Model):
 
         return output_dict
 
-    @overrides
     def make_output_human_readable(
         self, output_dict: Dict[str, torch.Tensor]
     ) -> Dict[str, torch.Tensor]:

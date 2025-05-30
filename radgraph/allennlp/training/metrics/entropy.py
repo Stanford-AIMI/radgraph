@@ -1,6 +1,5 @@
 from typing import Optional
 
-from overrides_ import overrides
 import torch
 import torch.distributed as dist
 
@@ -14,7 +13,6 @@ class Entropy(Metric):
         self._entropy = 0.0
         self._count = 0
 
-    @overrides
     def __call__(
         self,  # type: ignore
         logits: torch.Tensor,
@@ -50,7 +48,6 @@ class Entropy(Metric):
         self._entropy += _entropy.item()
         self._count += _count
 
-    @overrides
     def get_metric(self, reset: bool = False):
         """
         # Returns
@@ -62,7 +59,6 @@ class Entropy(Metric):
             self.reset()
         return {"entropy": average_value}
 
-    @overrides
     def reset(self):
         self._entropy = 0.0
         self._count = 0

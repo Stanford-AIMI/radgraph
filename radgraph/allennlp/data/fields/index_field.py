@@ -1,6 +1,5 @@
 from typing import Dict
 
-from overrides_ import overrides
 import torch
 
 from radgraph.allennlp.data.fields.field import Field
@@ -39,18 +38,15 @@ class IndexField(Field[torch.Tensor]):
                 "Found index: {} with type: {}.".format(index, type(index))
             )
 
-    @overrides
     def get_padding_lengths(self) -> Dict[str, int]:
 
         return {}
 
-    @overrides
     def as_tensor(self, padding_lengths: Dict[str, int]) -> torch.Tensor:
 
         tensor = torch.LongTensor([self.sequence_index])
         return tensor
 
-    @overrides
     def empty_field(self):
         return IndexField(-1, self.sequence_field.empty_field())
 

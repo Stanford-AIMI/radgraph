@@ -8,8 +8,6 @@ import json
 import logging
 import os
 
-from overrides_ import overrides
-
 from radgraph.allennlp.commands.subcommand import Subcommand
 
 logger = logging.getLogger(__name__)
@@ -17,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 @Subcommand.register("print-results")
 class PrintResults(Subcommand):
-    @overrides
     def add_subparser(self, parser: argparse._SubParsersAction) -> argparse.ArgumentParser:
 
         description = """Print results from allennlp training runs in a helpful CSV format."""

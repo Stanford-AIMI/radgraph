@@ -1,13 +1,11 @@
 from typing import List, Dict
 
-from overrides_ import overrides
 import numpy
 
 from radgraph.allennlp.common.util import JsonDict
 from radgraph.allennlp.data import Instance
 from radgraph.allennlp.predictors.predictor import Predictor
 from radgraph.allennlp.data.fields import LabelField
-from radgraph.allennlp.data.tokenizers.spacy_tokenizer import SpacyTokenizer
 
 
 @Predictor.register("text_classifier")
@@ -23,7 +21,6 @@ class TextClassifierPredictor(Predictor):
     def predict(self, sentence: str) -> JsonDict:
         return self.predict_json({"sentence": sentence})
 
-    @overrides
     def _json_to_instance(self, json_dict: JsonDict) -> Instance:
         """
         Expects JSON that looks like `{"sentence": "..."}`.
@@ -39,7 +36,6 @@ class TextClassifierPredictor(Predictor):
             sentence = tokenizer.tokenize(sentence)
         return self._dataset_reader.text_to_instance(sentence)
 
-    @overrides
     def predictions_to_labeled_instances(
         self, instance: Instance, outputs: Dict[str, numpy.ndarray]
     ) -> List[Instance]:
