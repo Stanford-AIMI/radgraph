@@ -34,7 +34,7 @@ pytest
 Usage:
 ```python
 from radgraph import RadGraph
-radgraph = RadGraph(model="modern-radgraph-xl")
+radgraph = RadGraph(model_type="modern-radgraph-xl")
 annotations = radgraph(["No evidence of pneumothorax following chest tube removal."])
 ```
 Output:
