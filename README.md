@@ -2,10 +2,13 @@
 
 ## Table of Contents
 - [Requirements](#requirements)
-- [RadGraph](#radgraph)
+- [RadGraph-XL](#radgraph-xl)
 - [F1-RadGraph](#f1-radgraph)
 - [Processed Annotations](#processed-annotations)
-- [RadGraph v1](#radgraph-v1)
+- [Data](#data)
+    - [RadGraph-XL](#radgraph-xl-1)
+    - [RadGraph-v1](#radgraph-v1)
+- [RadGraph-v1](#radgraph-v1-1)
 ---
 
 ## Requirements
@@ -29,7 +32,7 @@ Testing:
 pytest
 ```
 
-## RadGraph
+## RadGraph-XL
 
 Usage:
 ```python
@@ -182,7 +185,15 @@ Observation: atelectasis [Tag: uncertain]
 Observation: infection [Tag: uncertain]
 ```
 
-##  RadGraph v1
+## Data
+### RadGraph-XL
+- Annotated MIMIC reports: https://physionet.org/content/radgraph-xl/1.0.0/ (300 samples) 
+- Annotated Stanford reports: https://stanfordaimi.azurewebsites.net/datasets/57816fe0-661c-4a95-8724-3f95b29568d9 (2000 samples)
+
+### RadGraph-v1
+- Annotated MIMIC-CXR reports: https://physionet.org/content/radgraph/1.0.0/ (600 samples)
+
+##  RadGraph-v1
 
 ```
 radgraph = RadGraph(model="radgraph")
