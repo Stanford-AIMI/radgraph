@@ -9,6 +9,10 @@
     - [RadGraph-XL](#radgraph-xl-1)
     - [RadGraph-v1](#radgraph-v1)
 - [RadGraph-v1](#radgraph-v1-1)
+- [Citations](#citations)
+    - [RadGraph-XL](#radgraph-xl-2)
+    - [F1-RadGraph](#f1-radgraph-1)
+    - [RadGraph-v1](#radgraph-v1-2)
 ---
 
 ## Requirements
@@ -199,6 +203,55 @@ Observation: infection [Tag: uncertain]
 radgraph = RadGraph(model="radgraph")
 ```
 
+# Citations
+## RadGraph-XL
+```bibtex
+@inproceedings{delbrouck-etal-2024-radgraph,
+    title = "{R}ad{G}raph-{XL}: A Large-Scale Expert-Annotated Dataset for Entity and Relation Extraction from Radiology Reports",
+    author = "Delbrouck, Jean-Benoit  and
+      Chambon, Pierre  and
+      Chen, Zhihong  and
+      Varma, Maya  and
+      Johnston, Andrew  and
+      Blankemeier, Louis  and
+      Van Veen, Dave  and
+      Bui, Tan  and
+      Truong, Steven  and
+      Langlotz, Curtis",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand and virtual meeting",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.765",
+    pages = "12902--12915",
+    }
+```
+
+## F1-RadGraph
+```bibtex
+@inproceedings{delbrouck-etal-2022-improving,
+    title = "Improving the Factual Correctness of Radiology Report Generation with Semantic Rewards",
+    author = "Delbrouck, Jean-Benoit  and
+      Chambon, Pierre  and
+      Bluethgen, Christian  and
+      Tsai, Emily  and
+      Almusa, Omar  and
+      Langlotz, Curtis",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2022",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-emnlp.319",
+    pages = "4348--4360",
+}
+```
+
+## RadGraph-v1
 ```bibtex
 @inproceedings{NEURIPS DATASETS AND BENCHMARKS2021_c8ffe9a5,
  author = {Jain, Saahil and Agrawal, Ashwin and Saporta, Adriel and Truong, Steven and Duong, Du Nguyen Duong Nguyen and Bui, Tan and Chambon, Pierre and Zhang, Yuhao and Lungren, Matthew and Ng, Andrew and Langlotz, Curtis and Rajpurkar, Pranav and Rajpurkar, Pranav},
