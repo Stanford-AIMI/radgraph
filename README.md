@@ -3,7 +3,7 @@
 ## Table of Contents
 - [Requirements](#requirements)
 - [RadGraph-XL](#radgraph-xl)
-- [F1-RadGraph](#f1-radgraph)
+- [F1-RadGraph score](#f1-radgraph-score)
 - [Processed Annotations](#processed-annotations)
 - [Data](#data)
     - [RadGraph-XL](#radgraph-xl-1)
@@ -112,7 +112,7 @@ Official package as per:
 ```
 
 
-##  F1-RadGraph
+##  F1-RadGraph score
 Usage:
 ```python
 from radgraph import F1RadGraph
