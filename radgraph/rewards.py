@@ -6,7 +6,7 @@ def exact_entity_token_if_all_match_reward(
         candidate = []
         for entity in annotation_list["entities"].values():
             if not entity["relations"]:
-                candidate.append((entity["tokens"], entity["label"]))
+                candidate.append((entity["tokens"].lower(), entity["label"]))
             if entity["relations"]:
                 candidate.extend([(entity["tokens"].lower(),
                                    entity["label"],
@@ -60,9 +60,9 @@ def exact_entity_token_if_rel_exists_reward(
         candidate = []
         for entity in annotation_list["entities"].values():
             if not entity["relations"]:
-                candidate.append((entity["tokens"], entity["label"]))
+                candidate.append((entity["tokens"].lower(), entity["label"]))
             if entity["relations"]:
-                candidate.append((entity["tokens"], entity["label"], True))
+                candidate.append((entity["tokens"].lower(), entity["label"], True))
 
         candidate = set(candidate)
         candidates.append(candidate)
@@ -109,7 +109,7 @@ def exact_entity_token_match_reward(
     for annotation_list in [hypothesis_annotation_list, reference_annotation_list]:
         candidate = []
         for entity in annotation_list["entities"].values():
-            candidate.append((entity["tokens"], entity["label"]))
+            candidate.append((entity["tokens"].lower(), entity["label"]))
 
         candidate = set(candidate)
         candidates.append(candidate)
