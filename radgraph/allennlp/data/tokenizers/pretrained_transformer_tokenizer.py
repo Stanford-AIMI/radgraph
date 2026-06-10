@@ -120,7 +120,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         tokenizer_with_special_tokens = cached_transformers.get_tokenizer(
             model_name, **tokenizer_kwargs
         )
-        dummy_output = tokenizer_with_special_tokens.encode_plus(
+        dummy_output = tokenizer_with_special_tokens(
             token_a,
             token_b,
             add_special_tokens=True,
@@ -179,7 +179,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         ) == self.tokenizer.num_special_tokens_to_add(pair=True)
 
         # Reverse-engineer the tokenizer for one sequence
-        dummy_output = tokenizer_with_special_tokens.encode_plus(
+        dummy_output = tokenizer_with_special_tokens(
             token_a,
             add_special_tokens=True,
             return_token_type_ids=True,
@@ -229,7 +229,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         """
         This method only handles a single sentence (or sequence) of text.
         """
-        encoded_tokens = self.tokenizer.encode_plus(
+        encoded_tokens = self.tokenizer(
             text=text,
             add_special_tokens=False,
             max_length=self._max_length,
@@ -342,7 +342,7 @@ class PretrainedTransformerTokenizer(Tokenizer):
         tokens: List[Token] = []
         offsets: List[Optional[Tuple[int, int]]] = []
         for token_string in string_tokens:
-            wordpieces = self.tokenizer.encode_plus(
+            wordpieces = self.tokenizer(
                 token_string,
                 add_special_tokens=False,
                 return_tensors=None,

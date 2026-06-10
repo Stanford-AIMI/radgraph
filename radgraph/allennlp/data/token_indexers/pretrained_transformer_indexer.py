@@ -50,6 +50,17 @@ class PretrainedTransformerIndexer(TokenIndexer):
         self._num_added_start_tokens = len(self._allennlp_tokenizer.single_sequence_start_tokens)
         self._num_added_end_tokens = len(self._allennlp_tokenizer.single_sequence_end_tokens)
 
+        self._start_token_ids = [
+            int(token.text_id)
+            for token in self._allennlp_tokenizer.single_sequence_start_tokens
+            if token.text_id is not None
+        ]
+        self._end_token_ids = [
+            int(token.text_id)
+            for token in self._allennlp_tokenizer.single_sequence_end_tokens
+            if token.text_id is not None
+        ]
+
         self._max_length = max_length
         if self._max_length is not None:
             num_added_tokens = len(self._allennlp_tokenizer.tokenize("a")) - 1
@@ -168,7 +179,7 @@ class PretrainedTransformerIndexer(TokenIndexer):
             ]
             # Adds special tokens to each segment
             folded_indices = [
-                self._tokenizer.build_inputs_with_special_tokens(segment)
+                self._start_token_ids + segment + self._end_token_ids
                 for segment in folded_indices
             ]
             # Flattens
