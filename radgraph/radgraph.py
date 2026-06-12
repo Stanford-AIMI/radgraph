@@ -75,7 +75,9 @@ class RadGraph(nn.Module):
 
         self.model_type = model_type.lower()
 
-        assert model_type in ["radgraph", "radgraph-xl", "echograph","modern-radgraph-xl"]
+        # NOTE ensure model type is one that we use in ARIES ("radgraph" or "radgraph-xl")
+        # NOTE had to remove "modern-radgraph-xl" because it does not work right with transformers v5 (and removed "echograph" because we do not use it)
+        assert model_type in ["radgraph", "radgraph-xl"]
 
         # Handle temp_dir deprecation
         if temp_dir is not None:
